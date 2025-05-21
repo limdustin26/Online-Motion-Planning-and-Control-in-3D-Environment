@@ -1,0 +1,14 @@
+<launch>
+  <!-- pose pub (map to base_footprint) -->
+  <!-- <node name="aft_mapped_odom_pub" pkg="navigation" type="aft_mapped_pose_pub.py" output="screen" /> -->
+
+<!-- odom to base_footprint tf -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se_odom" clear_params="true">
+    <rosparam command="load" file="$(find navigation)/config/local_ekf.yaml" />
+    <remap from="odometry/filtered" to="odometry/filtered"/>
+  </node>
+
+  <!-- map to odom tf -->
+  <!-- <node name="ll2tf_node" pkg="navigation" type="ll2tf.py" output="screen" /> -->
+
+</launch>
